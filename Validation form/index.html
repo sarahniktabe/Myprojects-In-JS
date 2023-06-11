@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validation From</title>
+  </head>
+  <body>
+    <h1>Input your informations:</h1>
+    <br />
+    <form
+      name="infromations"
+      action="/server.asp"
+      method="post"
+      onsubmit="return validationcode()"
+      onsubmit="return validationphone()">
+      Name: <input type="text" id="name" />
+      <br />
+      <br />
+      Family: <input type="text" id="family" />
+      <br />
+      <br />
+      *Phone Number: <input type="text" id="num" placeholder="0913 000 00 00" />
+      <p id="emptynum" style="color: red"></p>
+      <br />
+      <br />
+      *National Code: <input type="text" id="ncode" />
+      <p id="emptyncode" style="color: red"></p>
+      <br />
+      <button type="submit" name="sumbit" onclick="validationcode(),validationphone()">Sumbit</button>
+    </form>
+
+    <script src="JsFiles/validationForm.js"></script>
+  </body>
+</html>

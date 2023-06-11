@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Prompt Box</title>
+    <style></style>
+  </head>
+  <body>
+   <h1>there is a beautiful prompt box that you could see: </h1>
+   <br/>
+    <button onclick="funPrompt()">Try It</button>
+    <button onclick="alert('Hello \n How Are You ?')">Try It 2</button>
+    <p id="showPrompt"></p>
+
+    <script>
+      function funPrompt() {
+        var txt = "";
+        var person = prompt("Please Enter Your Name :", "sara niktabe");
+        if (person == null || person == "") {
+          txt = "User Cancelled The Prompt !";
+        } else {
+          txt = "Hello " + person;
+        }
+        document.getElementById("showPrompt").innerHTML = txt;
+      }
+    </script>
+  </body>
+</html>

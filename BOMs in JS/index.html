@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change your windows</title>
+  </head>
+  <body>
+    <h4>Do you want tp konw about the size your window?</h4>
+    <button onclick="getinfo()">get window info!</button>
+    <p id="info"></p>
+    <br />
+    <h4>I wanna open a new window with optional width and height that i choose:</h4>
+    <button onclick="openwin()">open window!</button>
+  </body>
+  <script>
+    function getinfo() {
+      var width =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.bod.clientWidth;
+
+      var height =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.bod.clientHeight;
+
+      document.getElementById("info").innerHTML =
+        "your windows width is: " + width + " ;" + " and height is: " + height;
+    }
+
+    function openwin() {
+      window.open("https://avamovie1.info/", "_blank", "top=500,left=1200,width=350,height=350");
+    }
+  </script>
+</html>
