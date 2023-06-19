@@ -1,4 +1,4 @@
-var getBtn = document.getElementById("#get-btn");
+var getBtn = document.getElementById("get-btn");
 //var postBtn = document.getElementById("#post-btn");
 
 const sendHttpRequest = (method, url) => {
@@ -17,14 +17,14 @@ const sendHttpRequest = (method, url) => {
   return Promise;
 };
 
-let getData = () => {
+let getData = (e) => {
   sendHttpRequest("GET", "https://jsonplaceholder.typicode.com/posts/1")
-    .then((res) => {
+    .then(res => {
       //document.getElementById("showData").innerHTML = res;
-      console.log(res);
+      console.log(e.res);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(e.err);
     });
 };
 
