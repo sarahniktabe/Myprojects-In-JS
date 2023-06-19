@@ -1,0 +1,24 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my window</title>
+  </head>
+  <body>
+    <button onclick="openwin()">open window!</button>
+    <button onclick="movewin()">move the window!</button>
+  </body>
+  <script>
+    var mywindow;
+    function openwin() {
+      mywindow = window.open("","_blank","width=500,height=500");
+      mywindow.document.write("<p>This is my new window.</p>");
+    }
+
+    function movewin() {
+      mywindow.moveTo(500, 1200);
+      mywindow.resizeTo(100, 250);
+      mywindow.focus();
+    }
+  </script>
+</html>
