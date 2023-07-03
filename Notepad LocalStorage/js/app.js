@@ -3,6 +3,7 @@ var fn = document.querySelector("#form");
 fn.addEventListener("submit", newNote);
 var note = document.querySelector("#note");
 var noteList = document.querySelector("#note-list");
+document.querySelector("#note-list").addEventListener("click", removeNote);
 
 //Functions
 function newNote(e) {
@@ -20,4 +21,11 @@ function newNote(e) {
   noteList.appendChild(li);
   console.log(note.Value);
   //note.Value = "";
+}
+
+function removeNote(e) {
+  if(e.target.classList.contains('remove-note')){
+    //remove li with parentElement
+    e.target.parentElement.remove()
+  }
 }
