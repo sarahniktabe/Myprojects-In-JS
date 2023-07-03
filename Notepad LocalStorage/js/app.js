@@ -21,11 +21,34 @@ function newNote(e) {
   noteList.appendChild(li);
   console.log(note.Value);
   //note.Value = "";
+  addNoteToLocalStorage(note);
 }
 
+//remove note from list
 function removeNote(e) {
-  if(e.target.classList.contains('remove-note')){
+  if (e.target.classList.contains("remove-note")) {
     //remove li with parentElement
-    e.target.parentElement.remove()
+    e.target.parentElement.remove();
   }
+}
+
+// adding note to the local storage
+function addNoteToLocalStorage(x) {
+  var x = getNotesFromLocalStorage();
+  // add new notes to array
+  x.push(note);
+  // add new notes Array to the localStorage
+  localStorage.setItem("notes", JSON.stringify(x));
+}
+
+// get previous notes from localStorage
+function getNotesFromLocalStorage() {
+  let notes;
+  let getFromLS = localStorage.getItem("notes");
+  if (getFromLS === null) {
+    notes = [];
+  } else {
+    notes = JSON.parse(getFromLS);
+  }
+  return notes;
 }
