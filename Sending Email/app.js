@@ -3,6 +3,8 @@ let sendBtn = document.querySelector("#sendBtn");
 let email = document.querySelector("#email");
 let subject = document.querySelector("#subject");
 let message = document.querySelector("#message");
+let resetBtn = document.querySelector("#resetBtn");
+let form = document.querySelector("#email-form");
 
 // eventListeners
 addEventListener();
@@ -12,6 +14,7 @@ function addEventListener() {
   email.addEventListener("blur", validateField);
   subject.addEventListener("blur", validateField);
   message.addEventListener("blur", validateField);
+  resetBtn.addEventListener("click", resetForm);
 }
 
 // functions
@@ -27,7 +30,7 @@ function validateField() {
   validateLength(this);
 
   //validating Email
-  if (this.type === 'email') {
+  if (this.type === "email") {
     validateEmail(this);
   }
 
@@ -54,11 +57,16 @@ function validateLength(field) {
 function validateEmail(e) {
   console.log(e.value);
   var emailText = e.value;
-  if (emailText.includes('@')) {
+  if (emailText.includes("@")) {
     e.style.borderBottomColor = "green";
     e.classList.remove("error");
   } else {
     e.style.borderBottomColor = "red";
     e.classList.add("error");
   }
+}
+
+//reset form
+function resetForm() {
+  form.reset();
 }
