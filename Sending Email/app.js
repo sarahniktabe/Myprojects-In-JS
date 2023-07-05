@@ -15,6 +15,34 @@ function addEventListener() {
   subject.addEventListener("blur", validateField);
   message.addEventListener("blur", validateField);
   resetBtn.addEventListener("click", resetForm);
+  form.addEventListener("submit", submitForm);
+}
+
+//spinner
+function submitForm(e) {
+  e.preventDefault();
+
+  //show spinner
+  var spinner = document.getElementById("spinner");
+  spinner.style.display = "block";
+
+  // show mail img
+  const sendEmialImg = document.createElement("img");
+  sendEmialImg.src = "../img/mail.gif";
+  sendEmialImg.style.display = "block";
+
+  setTimeout(() => {
+    spinner.style.display = "none";
+    const showEmailImg = document.getElementById("loaders");
+    showEmailImg.appendChild(sendEmialImg);
+
+    //reset form
+
+    setTimeout(() => {
+      resetForm();
+      sendEmialImg.remove();
+    }, 5000);
+  }, 3000);
 }
 
 // functions
