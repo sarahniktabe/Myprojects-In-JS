@@ -28,7 +28,7 @@ function submitForm(e) {
 
   // show mail img
   const sendEmialImg = document.createElement("img");
-  sendEmialImg.src = "../img/mail.gif";
+  sendEmialImg.src = "img/mail.gif";
   sendEmialImg.style.display = "block";
 
   setTimeout(() => {
