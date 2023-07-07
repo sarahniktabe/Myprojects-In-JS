@@ -1,13 +1,14 @@
 //variables
 let form = document.querySelector("#request-quote");
-let html = new HTMLUI();
-let insurance = Insurance();
+//let html = new HTMLUI();
+//let insurance = new Insurance(make, year, level);
 
 //EventListener
 addEventListener();
 function addEventListener() {
   document.addEventListener("DOMContentLoaded", function () {
     //display the <options>
+    let html = new HTMLUI();
     html.displayYears();
     //console.log(html);
   });
@@ -22,10 +23,11 @@ function addEventListener() {
 
     // validating
     if (make === "" || year === "" || level === "") {
+      let html = new HTMLUI();
       html.dispalyError("لطفا همه مقادیر به درستی وارد شود.");
     } else {
-      insurance(make, year, level);
-      const price = insurance.calculatePrice()
+      let insurance = new Insurance(make, year, level);
+      const price = insurance.calculatePrice(insurance);
     }
   });
 }
@@ -33,18 +35,36 @@ function addEventListener() {
 //objects
 
 //every thing related to the
-function Insurance (make, year , level){
-  this.make
-  this.year
-  this.level
-
+function Insurance(make, year, level) {
+  this.make = make;
+  this.year = year;
+  this.level = level;
 }
-
 
 //calculate price
-Insurance.prototype.calculatePrice = function(){
-  
-}
+Insurance.prototype.calculatePrice = function (info) {
+  let makePrice = 0;
+    let base = 2000000;
+    // get the make value
+    const makeKey = info.make;
+    /*
+        make:1 ==> pride    1.15    
+        make:2 ==> optima   1.30
+        make:3 ==> porches  1.80
+     */
+    switch (makeKey) {
+      case "1":
+        makePrice = base * 1.15;
+        break;
+      case "2":
+        makePrice = base * 1.3;
+        break;
+      case "3":
+        makePrice = base * 1.8;
+        break;
+    }
+  console.log(makePrice);
+};
 
 //every things related to the html
 function HTMLUI() {}
