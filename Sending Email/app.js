@@ -15,7 +15,7 @@ function addEventListener() {
   subject.addEventListener("blur", validateField);
   message.addEventListener("blur", validateField);
   resetBtn.addEventListener("click", resetForm);
-  form.addEventListener("submit", submitForm);
+  form.addEventListener("click", submitForm);
 }
 
 //spinner
