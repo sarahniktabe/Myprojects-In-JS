@@ -44,26 +44,79 @@ function Insurance(make, year, level) {
 //calculate price
 Insurance.prototype.calculatePrice = function (info) {
   let makePrice = 0;
-    let base = 2000000;
-    // get the make value
-    const makeKey = info.make;
-    /*
+  let base = 2000000;
+  // get the make value
+  const makeKey = info.make;
+  /*
         make:1 ==> pride    1.15    
         make:2 ==> optima   1.30
         make:3 ==> porches  1.80
      */
-    switch (makeKey) {
-      case "1":
-        makePrice = base * 1.15;
-        break;
-      case "2":
-        makePrice = base * 1.3;
-        break;
-      case "3":
-        makePrice = base * 1.8;
-        break;
-    }
-  console.log(makePrice);
+  switch (makeKey) {
+    case "1":
+      makePrice = base * 1.15;
+      break;
+    case "2":
+      makePrice = base * 1.3;
+      break;
+    case "3":
+      makePrice = base * 1.8;
+      break;
+  }
+  //console.log(makePrice);
+
+  //get the year
+  const year = info.year;
+  const diffrence = this.getYearDiffrence(year);
+  console.log(diffrence);
+
+  //3% for each year
+  makePrice = makePrice - (((diffrence * 3) / 100) * makePrice);
+    console.log(makePrice);
+
+};
+
+//get the diffrence between 2 year
+Insurance.prototype.getYearDiffrence = function (year) {
+  var persianNumbers = [
+      /۰/g,
+      /۱/g,
+      /۲/g,
+      /۳/g,
+      /۴/g,
+      /۵/g,
+      /۶/g,
+      /۷/g,
+      /۸/g,
+      /۹/g,
+    ],
+    arabicNumbers = [
+      /٠/g,
+      /١/g,
+      /٢/g,
+      /٣/g,
+      /٤/g,
+      /٥/g,
+      /٦/g,
+      /٧/g,
+      /٨/g,
+      /٩/g,
+    ],
+    fixNumbers = function (str) {
+      if (typeof str === "string") {
+        for (var i = 0; i < 10; i++) {
+          str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+        }
+      }
+      return str;
+    };
+
+  // max years
+  const now = new Date().toLocaleDateString("fa-IR");
+  let nowyear = now.slice(0, 4);
+  let max = fixNumbers(nowyear);
+  year = max - year;
+  return year;
 };
 
 //every things related to the html
