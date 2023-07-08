@@ -28,6 +28,9 @@ function addEventListener() {
     } else {
       let insurance = new Insurance(make, year, level);
       const price = insurance.calculatePrice(insurance);
+      //console.log(price);
+      let html = new HTMLUI();
+      html.showResult(price , info)
     }
   });
 }
@@ -68,15 +71,21 @@ Insurance.prototype.calculatePrice = function (info) {
   //get the year
   const year = info.year;
   const diffrence = this.getYearDiffrence(year);
-  console.log(diffrence);
+  //console.log(diffrence);
 
   //3% for each year
-  makePrice = makePrice - (((diffrence * 3) / 100) * makePrice);
-    console.log(makePrice);
+  makePrice = makePrice - ((diffrence * 3) / 100) * makePrice;
+  //console.log(makePrice);
 
+  //get the level
+  const level = info.level;
+  //console.log(level)
+  makePrice = this.calculateLevel(level, makePrice);
+  //console.log(makePrice);
+  return makePrice;
 };
 
-//get the diffrence between 2 year
+//get the diffrence between 2 year with dates
 Insurance.prototype.getYearDiffrence = function (year) {
   var persianNumbers = [
       /۰/g,
@@ -115,8 +124,23 @@ Insurance.prototype.getYearDiffrence = function (year) {
   const now = new Date().toLocaleDateString("fa-IR");
   let nowyear = now.slice(0, 4);
   let max = fixNumbers(nowyear);
+  //get diffrence
   year = max - year;
   return year;
+};
+
+//get the level
+Insurance.prototype.calculateLevel = function (level, makePrice) {
+  /*
+  basic ==> increase 30% => 1.30
+  complete ==> increase 50% => 1.50
+  */
+  if (level == "basic") {
+    makePrice = makePrice * 1.3;
+  } else {
+    makePrice = makePrice * 1.5;
+  }
+  return makePrice;
 };
 
 //every things related to the html
@@ -191,3 +215,15 @@ HTMLUI.prototype.dispalyError = function (err) {
     document.querySelector(".error").remove();
   }, 5000);
 };
+
+
+//display factor to the form
+HTMLUI.prototype.showResult = function(price, info){
+  const result = document.querySelector('#result');
+  let div = document.createElement('div')
+  div.innerHTML =`
+  <p class="result">قیمت نهایی: ${price}</p>
+  `
+
+
+}
