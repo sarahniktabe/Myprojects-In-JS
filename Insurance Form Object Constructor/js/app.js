@@ -267,8 +267,16 @@ let levelconvert = info.level;
   <p>نوع بیمه : ${levelconvert}</p>
   <p class="total">قیمت نهایی: ${price}</p>
   `
-
-
+//spinner
+let spinner = document.querySelector ('#loading img')
+spinner.style.display= 'block';
+setTimeout(() => {
+  //hide spinner after 3 second
+  spinner.style.display= 'none';
+  //append to the result
   result.appendChild(div);
+}, 3000);
+
+  
 
 }
