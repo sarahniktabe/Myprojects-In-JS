@@ -26,11 +26,16 @@ function addEventListener() {
       let html = new HTMLUI();
       html.dispalyError("لطفا همه مقادیر به درستی وارد شود.");
     } else {
+      const resultDiv = document.querySelector('#result div');
+      if (resultDiv !== null) {
+        resultDiv.remove();
+        
+      }
       let insurance = new Insurance(make, year, level);
       const price = insurance.calculatePrice(insurance);
       //console.log(price);
       let html = new HTMLUI();
-      html.showResult(price , info)
+      html.showResult(price , insurance)
     }
   });
 }
@@ -221,9 +226,49 @@ HTMLUI.prototype.dispalyError = function (err) {
 HTMLUI.prototype.showResult = function(price, info){
   const result = document.querySelector('#result');
   let div = document.createElement('div')
+
+//convert make value to the name car
+let makeKeyConvert = info.make;
+/*
+      make:1 ==> pride      
+      make:2 ==> optima  
+      make:3 ==> porches
+   */
+switch (makeKeyConvert) {
+  case "1":
+    makeKeyConvert = 'پراید'
+    break;
+  case "2":
+    makeKeyConvert = 'اپتیما'
+    break;
+  case "3":
+    makeKeyConvert = 'پورشه'
+    break;
+}
+//console.log(makeKeyConvert)
+
+//convert level en to persian
+let levelconvert = info.level;
+/*
+  basic ==> ساده
+  complete ==> تکمیلی
+  */
+  if (levelconvert == "basic") {
+    levelconvert = "ساده"
+  } else {
+    levelconvert= "تکمیلی"
+  }
+
+// show factor
   div.innerHTML =`
-  <p class="result">قیمت نهایی: ${price}</p>
+  <p class="header">خلاصه فاکتور</p>
+  <p>مدل ماشین: ${makeKeyConvert}</p>
+  <p>تاریخ ساخت:${info.year}</p>
+  <p>نوع بیمه : ${levelconvert}</p>
+  <p class="total">قیمت نهایی: ${price}</p>
   `
 
+
+  result.appendChild(div);
 
 }
