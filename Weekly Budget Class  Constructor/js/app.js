@@ -11,6 +11,14 @@ class HTML {
     budgetTotal.innerHTML = amount;
     budgetLeft.innerHTML = amount;
   }
+
+  printMessage(message, className){
+    let div = document.createElement('div');
+    div.innerHTML = message;
+    div.classList.add('alert' , 'alert-center', className)
+    let primary = document.querySelector ('.primary');
+    primary.insertBefore (div, form);
+  }
 }
 
 //variables
@@ -45,7 +53,12 @@ function eventListener() {
     let expense = document.querySelector("#expense").value;
     let amount = document.querySelector("#amount").value;
 
-    console.log(expense);
-    console.log(amount);
+    if (expense === "" || amount === ""){
+    html.printMessage("پر کردن همه موارد الزامی است.", 'alert-danger')
+    }else{
+        console.log("correct")
+    }
+
+   
   });
 }
