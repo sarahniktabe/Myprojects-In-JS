@@ -11,7 +11,7 @@ function loadEmployee(){
 
     //4
     xhr.onload = function(){
-        if (this.status === 200) {
+        if (this.status === 200 && this.readyState === 4) {
             const response = JSON.parse(this.responseText)
             const output = `
             <ul>
@@ -38,7 +38,7 @@ function loadEmployees(){
 
     //4
     xhr.onload = function(){
-        if (this.status === 200) {
+        if (this.status === 200 && this.readyState === 4) {
             const response = JSON.parse(this.responseText)
             let output = ''
             response.forEach(employee => {
