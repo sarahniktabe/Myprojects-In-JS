@@ -23,8 +23,8 @@ function loadJSON() {
            </li>
            
            `;
-        document.querySelector("#result").innerHTML = html;
       });
+      document.querySelector("#result").innerHTML = html;
     });
 }
 
