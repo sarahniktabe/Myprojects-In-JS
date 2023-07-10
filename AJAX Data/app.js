@@ -17,8 +17,9 @@ function loadData(){
         // 2 -> received
         // 3 -> loading
         // 4 -> done
-        if (this.status === 200) {
-            document.querySelector('#output').innerHTML = `<h1>${this.responseText}</h1>`
+        if (this.status === 200 && this.readyState === 4) {
+            document.querySelector('#output').innerHTML = `<h2 style="color: blue; margin-top:50px; text-align:center">
+            ${this.responseText}</h2>`
         }
     }
 
