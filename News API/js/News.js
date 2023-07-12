@@ -3,7 +3,7 @@ class News {
     this.APIkey = "7b7ed3f73a0d4d1aafacd20f2ba7bc10";
   }
 
-  queryAPI(newsName, country, category) {
+  async queryAPI(newsName, country, category) {
     let url = 'https://newsapi.org/v2/'
 
     if (country === '' && category === '') {
@@ -23,6 +23,10 @@ class News {
     }
     url += `apiKey=${this.APIkey}`;
 
-    console.log(url);
+    const newsResponse = await fetch(url);
+    const news = await ((newsResponse).json());
+    return{
+        news
+    }
   }
 }

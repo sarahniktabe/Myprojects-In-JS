@@ -24,7 +24,16 @@ function search(e){
     let category = document.querySelector('#category').value;
 
     if (newsName !=='' || country !=='' || category !==''){
-        newsAPI.queryAPI(newsName,country,category);
+        newsAPI.queryAPI(newsName,country,category)
+        .then(news => {
+           const newsArray= news.news.articles;
+           if (newsArray.length >0){
+            ui.showNews(newsArray)
+           }else{
+            ui.printMessage("there is no news with your filtering...", 'text-center alert alert-danger mt-4')
+           }
+
+        })
     }else{
         ui.printMessage('please enter atleast one parametr','text-center alert alert-danger mt-4');
     }
