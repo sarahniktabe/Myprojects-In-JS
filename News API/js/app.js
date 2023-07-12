@@ -1,6 +1,6 @@
 //classes
 let ui = new UI();
-
+let newsAPI = new News();
 
 
 
@@ -23,8 +23,8 @@ function search(e){
     let country = document.querySelector('#country').value;
     let category = document.querySelector('#category').value;
 
-    if (newsName !=='' || country !=="" || category !==''){
-    console.log("correct")
+    if (newsName !=='' || country !=='' || category !==''){
+        newsAPI.queryAPI(newsName,country,category);
     }else{
         ui.printMessage('please enter atleast one parametr','text-center alert alert-danger mt-4');
     }
