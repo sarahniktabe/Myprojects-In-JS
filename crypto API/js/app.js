@@ -21,6 +21,6 @@ function getValue(e) {
     ui.printMessage("please enter atleast one parametr","deep-orange darken-4 card-panel");
   } else{
     crypto.queryAPI(currency , cryptocurrency)
-    .then(data => ui.showResult(data.resultApi[0], currency));
+    .then(data => ui.creatTemplate(data.resultApi[0], currency));
   }
 }
