@@ -1,5 +1,6 @@
 //classes
 let ui = new UI();
+let crypto =new CryptoAPI();
 
 //addEventListener
 
@@ -12,11 +13,14 @@ function Listener() {
 //functions
 function getValue(e) {
   e.preventDefault();
-  let Currency = document.querySelector("#currency").value;
-  let Cryptocurrency = document.querySelector("#cryptocurrency").value;
+  let currency = document.querySelector("#currency").value;
+  let cryptocurrency = document.querySelector("#cryptocurrency").value;
 
-  if (Currency === "" || Cryptocurrency === "") {
+  if (currency === "" || cryptocurrency === "") {
     //materials class
     ui.printMessage("please enter atleast one parametr","deep-orange darken-4 card-panel");
+  } else{
+    crypto.queryAPI(currency , cryptocurrency)
+    .then(data => ui.showResult(data.resultApi[0], currency));
   }
 }
