@@ -54,7 +54,7 @@ class UI {
 
   showSpinner() {
     const spinnerGif = document.createElement("img");
-    spinnerGif.src = "../img/spinner.gif";
+    spinnerGif.src = "img/spinner.gif";
     document.querySelector(".spinner").appendChild(spinnerGif);
   }
   showResult(HTMLTemplate) {
